@@ -1,17 +1,18 @@
-#define SAMPLE_RATE      48000
-#define BUF_SIZE         2048
-#define BDL_CNT          4
-#define MAX_AMP          32000.0
-#define BYTES_PER_SAMPLE 4
-#define PCM_OUTPUT_REG   0x10
-#define CUR_ENTRY        0x4
-#define LAST_VALID       0x05
-#define XFR_STS          0x06
-#define XFR_CTL          0x0B
-#define RESET            0x00
-#define GLOBAL_CTL       0x2C
-#define MASTER_VOL       0x02
-#define PCM_VOL          0x18
+#define SAMPLE_RATE       22050
+#define BUF_SIZE          8192
+#define BDL_CNT           4
+#define MAX_AMP           32000.0
+#define BYTES_PER_SAMPLE  4
+#define PCM_OUTPUT_REG    0x10
+#define CUR_ENTRY         0x4
+#define LAST_VALID        0x05
+#define XFR_STS           0x06
+#define XFR_CTL           0x0B
+#define RESET             0x00
+#define GLOBAL_CTL        0x2C
+#define MASTER_VOL        0x02
+#define PCM_VOL           0x18
+#define FRONT_SAMPLE_RATE 0x2C
 
 class AC97BDLEntry
 {
@@ -77,9 +78,7 @@ U0 AC97Init()
   }
 
   OutU8(AC97Nabm + PCM_OUTPUT_REG + LAST_VALID, BDL_CNT-1);
-
   OutU8(AC97Nabm + PCM_OUTPUT_REG + XFR_CTL, 0x00);
-
   OutU8(AC97Nabm + PCM_OUTPUT_REG + XFR_CTL, 0x01);
 
   Spawn(&AC97AudioTask,,"AC97 Audio",1);
@@ -151,6 +150,7 @@ I64 AC97Probe()
   OutU16(AC97Nam + RESET, 0xFFFF);
   OutU16(AC97Nam + PCM_VOL, 0x0000);
   OutU16(AC97Nam + MASTER_VOL, 0x0F0F);
+  OutU16(AC97Nam + FRONT_SAMPLE_RATE, SAMPLE_RATE);
 
   AdamLog("\nAC'97 Device found!\n");
 
