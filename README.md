@@ -5,7 +5,7 @@ This provides sounds similar to that of a PC Speaker mainly for VirtualBox which
 Notes:
 - Performance will be bad if you don't have good hardware or are not using hardware acceleration for your virtual machine.
 - This is mainly for Windows people, if you're running Linux it will work, but you will get much better sound if you, compile the VMusic extension and use TinkerOS with Adlib instead!
-- This will not work properly in QEMU, in QEMU use PC speaker for TempleOS or Adlib for TinkerOS instead `-audiodev sdl,id=snd0 -device adlib,audiodev=snd0` and you will get much better sound and can even change to different instruments.
+- This is for VirtualBox only, it will not work properly in QEMU!  In QEMU use PC speaker for TempleOS `-audiodev sdl,id=snd0 -machine pc,pcspk-audiodev=snd0` or Adlib for TinkerOS instead `-audiodev sdl,id=snd0 -device adlib,audiodev=snd0` and you will get much better sound and can even change to different instruments.
 
 ## TempleOS VirtualBox setup
 - Get TempleOS ISO with AC97 included (`TempleOS_AC97.ISO`) under assets from [here](https://github.com/tinkeros/TinkerOS-AC97/releases/tag/TempleOS_AC97)
