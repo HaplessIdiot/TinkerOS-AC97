@@ -1,4 +1,4 @@
-#define SAMPLE_RATE       22050
+#define SAMPLE_RATE       44100
 #define BUF_SIZE          8192
 #define BDL_CNT           4
 #define MAX_AMP           32000.0
@@ -113,7 +113,7 @@ U0 AC97SetFreq(F64 freq)
   for (i = 0; i < period_samples; i++)
   {
     phase = ToF64(i) / samples_per_period_f;
-    amp = ToI64(Sin(phase * 2.0 * ã) * MAX_AMP);
+    amp = ToI64(Sin(phase * 2.0 * Ã£) * MAX_AMP);
     sine_buf[i * 4 + 0] = sine_buf[i * 4 + 2] = amp & 0xFF;
     sine_buf[i * 4 + 1] = sine_buf[i * 4 + 3] = (amp >> 8) & 0xFF;
   }
